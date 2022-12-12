@@ -1,13 +1,14 @@
 import React from "react";
 
-const ExpenseItem = () => {
+const ExpenseItem = ({amount,date,title}) => {
+  
   return (
-    <div>
-      <h3>Food Rs 10</h3>
-      <h3>Movies Rs 200</h3>
-      <h3>
-        Petrol Rs 100
-      </h3>
+    <div className="expense-item">
+      <div>{date.toISOString()}</div>
+      <div className="expense-item__description">
+         <h2>{title}</h2>
+        <div className="expense-item__price">{amount}</div>
+      </div>
     </div>
   )
 }
