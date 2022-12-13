@@ -1,5 +1,6 @@
 import './App.css'
 import ExpenseItem from './components/ExpenseItem'
+import ExpenseForm from './components/ExpenseForm'
 
 export default function App() {
   const expenses = [
@@ -32,17 +33,21 @@ export default function App() {
   ];
 
   return (
-    <main>
-      <h1>Expense Items</h1>
-      {
-        expenses.map(expense => (
-          <ExpenseItem key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-            location={expense.locationOfExpenditure} />
-        ))
-      }
-    </main>
-  )
+    <>
+      <ExpenseForm />
+
+      <main>
+        <h1>Expense Items</h1>
+        {
+          expenses.map(expense => (
+            <ExpenseItem key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+              location={expense.locationOfExpenditure} />
+          ))
+        }
+      </main>
+    </>
+        )
 }
