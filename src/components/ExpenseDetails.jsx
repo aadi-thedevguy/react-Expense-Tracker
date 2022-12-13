@@ -1,5 +1,5 @@
 
-const ExpenseDetails = ({ amount, title, location }) => {
+const ExpenseDetails = ({ amount, title}) => {
 
   return (
     <div className="expense-item__description">
