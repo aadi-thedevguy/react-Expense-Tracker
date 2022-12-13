@@ -7,11 +7,16 @@ const ExpenseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    const obj = {
+      enteredTitle,
+      enteredAmount,
+      enteredDate
+    }
+    console.log(obj)
   }
 
   const handleChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
 
     if (e.target.name === 'title') setTitle(e.target.value)
     if (e.target.name === 'date') setDate(e.target.value)
