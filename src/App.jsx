@@ -1,6 +1,7 @@
 import './App.css'
 import ExpenseItem from './components/ExpenseItem'
 import ExpenseForm from './components/ExpenseForm'
+import ExpensesFilter from './components/ExpensesFilter';
 import { useState } from 'react'
 const expenses = [
   {
@@ -19,7 +20,7 @@ const expenses = [
     id: 'e3',
     title: 'Car Insurance',
     amount: 294.67,
-    date: new Date(2021, 2, 28),
+    date: new Date(2022, 2, 28),
     locationOfExpenditure: 'Car Repair'
   },
   {
@@ -34,26 +35,35 @@ export default function App() {
 
 
   const [newExpenses, setNewExpenses] = useState(expenses)
+  const [filteredYear, setFilteredYear] = useState('2020')
 
   const saveExpenseDataHandler = (data) => {
-    const expenseData = { ...data, id: Math.random().toString()}
+    const expenseData = { ...data, id: Math.random().toString() }
     setNewExpenses([...expenses, expenseData])
     console.log(newExpenses)
   }
+
+  const filterChangeHandler = selectedYear => {
+    setFilteredYear(selectedYear);
+  };
+
+  const filteredExpenses = newExpenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
 
   return (
     <>
       <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
 
-      <main>
-        <h1>Expense Items</h1>
+      <main className="expenses">
+        <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
         {
-          newExpenses.map(expense => (
+          filteredExpenses.map(expense => (
             <ExpenseItem key={expense.id}
               title={expense.title}
               amount={expense.amount}
               date={expense.date}
-               />
+            />
           ))
         }
       </main>
