@@ -2,6 +2,7 @@ import './App.css'
 import ExpenseItem from './components/Expenses/ExpenseItem'
 import ExpenseForm from './components/Expenses/ExpenseForm'
 import ExpensesFilter from './components/Expenses/ExpensesFilter';
+import ExpensesChart from './components/Expenses/ExpenseChart';
 import { useState } from 'react'
 const expenses = [
   {
@@ -85,6 +86,7 @@ export default function App() {
       }
 
       <main className="expenses">
+        <ExpensesChart expenses={filteredExpenses} />
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
         {expensesContent}
         {filteredExpenses.length === 1 && <p>Only single Expense here. Please add more..</p>}
