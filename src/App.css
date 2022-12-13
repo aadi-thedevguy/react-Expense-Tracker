@@ -6,6 +6,10 @@
   max-width: 95%;
 }
 
+.expenses p {
+  color: white;
+}
+
 .expense-item {
   display: flex;
   justify-content: space-between;
@@ -168,4 +172,14 @@
   padding: 0.5rem 3rem;
   font-weight: bold;
   border-radius: 6px;
+}
+
+.expenses-list {
+  list-style: none;
+  padding: 0;
+}
+
+.expenses-list__fallback {
+  color: white;
+  text-align: center;
 }

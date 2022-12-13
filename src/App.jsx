@@ -49,7 +49,18 @@ export default function App() {
 
   const filteredExpenses = newExpenses.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear;
-  });
+  })
+
+  let expensesContent = <p>No Expenses found....</p>
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map(expense => (
+      <ExpenseItem key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ))
+  }
 
   return (
     <>
@@ -57,15 +68,8 @@ export default function App() {
 
       <main className="expenses">
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-        {
-          filteredExpenses.map(expense => (
-            <ExpenseItem key={expense.id}
-              title={expense.title}
-              amount={expense.amount}
-              date={expense.date}
-            />
-          ))
-        }
+        {expensesContent}
+        {filteredExpenses.length === 1 && <p>Only single Expense here. Please add more..</p>}
       </main>
     </>
   )
