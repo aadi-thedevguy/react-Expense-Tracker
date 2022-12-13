@@ -1,7 +1,7 @@
 import './App.css'
-import ExpenseItem from './components/ExpenseItem'
-import ExpenseForm from './components/ExpenseForm'
-import ExpensesFilter from './components/ExpensesFilter';
+import ExpenseItem from './components/Expenses/ExpenseItem'
+import ExpenseForm from './components/Expenses/ExpenseForm'
+import ExpensesFilter from './components/Expenses/ExpensesFilter';
 import { useState } from 'react'
 const expenses = [
   {
@@ -36,11 +36,12 @@ export default function App() {
 
   const [newExpenses, setNewExpenses] = useState(expenses)
   const [filteredYear, setFilteredYear] = useState('2020')
+  const [isEditing, setIsEditing] = useState(false);
 
   const saveExpenseDataHandler = (data) => {
     const expenseData = { ...data, id: Math.random().toString() }
     setNewExpenses([...expenses, expenseData])
-    console.log(newExpenses)
+    setIsEditing(false)
   }
 
   const filterChangeHandler = selectedYear => {
@@ -62,9 +63,26 @@ export default function App() {
     ))
   }
 
+
+  const startEditingHandler = () => {
+    setIsEditing(true);
+  };
+  const stopEditingHandler = () => {
+    setIsEditing(false);
+  };
+
   return (
     <>
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      {!isEditing && (
+        <button className='btn' onClick={startEditingHandler} > Add Expense </button>
+      )
+      } {
+        isEditing && (
+          <ExpenseForm onSaveExpenseData={saveExpenseDataHandler}
+            onCancel={stopEditingHandler}
+          />
+        )
+      }
 
       <main className="expenses">
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />

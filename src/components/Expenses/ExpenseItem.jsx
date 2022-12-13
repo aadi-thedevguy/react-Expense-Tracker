@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ExpenseDate from './ExpenseDate'
-import ExpenseDetails from './ExpenseDetails'
+import ExpenseDetails from './ExpenseDetails' 
 
 const ExpenseItem = ({ amount, date, title }) => {
   const [newAmount, setNewAmount] = useState(amount)
